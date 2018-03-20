@@ -57,14 +57,8 @@
 														<td><a href="<?=URL('admin/article/art_list')?>?cate_id={$v.cate_id}">{$v.cate_name}</a></td>
 														<td><a href="<?=URL('admin/article/art_info')?>?art_id={$v.art_id}">文章详情</a></td>
 														<td>{$v.art_addtime|date="Y-m-d H:i:s",###}</td>
-														<td>
-															{if condition="$v['is_top'] == 1"}
-															<a href="<?=URL('admin/article/art_top')?>?art_id={$v.art_id}&top=1">取消置顶</a>
-															{else /}
-															<a href="<?=URL('admin/article/art_top')?>?art_id={$v.art_id}&top=0">置上顶端</a>
-															{/if}
+														<td><a href="javascript:;" class="recycle" data-recycle="{$v.art_id}">恢复</a>
 															||<a href="javascript:;" class="del" data-del="{$v.art_id}">删除</a>
-															||<a href="<?=URL('admin/article/art_upd')?>?art_id={$v.art_id}" >编辑</a>
 														</td>
 
 													</tr>
@@ -84,18 +78,34 @@
 <script type="text/javascript">
 $(function()
 {
-	//ajax删除
-	$('.del').click(function()
+	//ajax恢复
+	$('.recycle').click(function()
 	{	 
-		if (!confirm('您确定要放入回收站么？')) return;
-		var admin_id = $(this).data('del');
+		if (!confirm('您确定要恢复么？')) return;
+		var art_id = $(this).data('recycle');
 		var this_del = $(this);
-		$.get("<?=URL('admin/article/art_del')?>",{art_id:admin_id},function(info)
+		$.get("<?=URL('admin/article/art_recycles')?>",{art_id:art_id},function(info)
 		{
 			if (info == 1) {
 				this_del.parents('tr').remove();
 			} else {
-				alert('删除失败');
+				alert('恢复失败');
+			}
+		})
+	})
+
+	//ajax删除
+	$('.del').click(function()
+	{	 
+		if (!confirm('您确定要彻底删除么？')) return;
+		var art_id = $(this).data('del');
+		var this_del = $(this);
+		$.get("<?=URL('admin/article/art_truedel')?>",{art_id:art_id},function(info)
+		{
+			if (info == 1) {
+				this_del.parents('tr').remove();
+			} else {
+				alert('恢复失败');
 			}
 		})
 	})
