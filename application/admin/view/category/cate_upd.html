@@ -1,0 +1,71 @@
+﻿					{include file="common/header" /}
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="<?=URL('admin/index/index')?>">首页</a>
+							</li>
+							<li class="active">分类管理</li>
+							<li class="active">分类编辑</li>
+						</ul><!-- .breadcrumb -->
+					</div>
+
+					<div class="page-content">
+							<div class="row">
+
+									<div class="col-xs-12">
+									
+									<form class="form-horizontal" role="form" action="<?=URL('admin/category/cate_upd')?>" method="post" enctype="multipart/form-data">
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 分类名称 </label>
+
+										<div class="col-sm-9">
+											<input type="hidden" name="cate_id" value="{$data.cate_id}">
+											<input type="text" id="form-field-1" placeholder="分类名称" class="col-xs-10 col-sm-5" name="cate_name" value="{$data.cate_name}" />
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 关键字 </label>
+
+										<div class="col-sm-9">
+											<input type="text" id="form-field-2" placeholder="关键字" class="col-xs-10 col-sm-5" name="cate_keyword" value="{$data.cate_keyword}"/>
+										</div>
+									</div>
+
+									<div class="space-4"></div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 是否显示 </label>
+										<div class="col-sm-9">
+											{if condition="$data['is_show'] == 1"}
+										  	<input type="radio" name="is_show" id="optionsRadios1" value="1" checked> 展示
+										  	<input type="radio" name="is_show" id="optionsRadios2" value="0"> 不展示
+										  	{else /}
+										  	<input type="radio" name="is_show" id="optionsRadios1" value="1" > 展示
+										  	<input type="radio" name="is_show" id="optionsRadios2" value="0" checked> 不展示
+										  	{/if}
+									  	</div>
+									
+									</div>
+
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											
+											<input type="submit" value="编辑" class="btn btn-info icon-ok bigger-110">
+
+											&nbsp; &nbsp; &nbsp;
+											<button class="btn" type="reset">
+												重置
+											</button>
+										</div>
+									</div>
+
+									<div class="hr hr-24"></div>
+
+
+
+								</form>
+							{include file='common/footer' /}

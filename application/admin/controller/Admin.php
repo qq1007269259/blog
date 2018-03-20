@@ -67,7 +67,7 @@ class Admin extends Controller
                     
                 }else{
                     // 上传失败获取错误信息
-                    echo "<script>alert(".$file->getError().");window.history.go(-1)</script>";
+                    jump($file->getError(),'admin/admin/register');
                 }
             }
 
@@ -80,7 +80,7 @@ class Admin extends Controller
                     $this->redirect('admin/admin/admin_list');
                 }
             } else {
-                echo "<script>alert('两次输入密码不同');window.history.go(-1)</script>";
+                jump('两次输入密码不同','admin/admin/register');
             }
             // print_r($post);die;
 
@@ -95,7 +95,7 @@ class Admin extends Controller
     {   
         $name_info = Db::name('admin')->column('admin_name');
         if (in_array($data['admin_name'],$name_info)) {
-            echo "<script>alert('用户名已存在');window.history.go(0)</script>";
+            jump('用户名已存在','admin/admin/register');
         }
     }
     
@@ -127,7 +127,7 @@ class Admin extends Controller
                 $post['admin_password'] = md5($post['admin_password']);
                 if ($post['admin_pwd'] == $post['admin_password']) {
                 } else {
-                    echo "<script>alert('两次输入密码不同');window.history.go(-1);</script>";
+                    jump('两次输入密码不同','admin/admin/admin_upd');
                 }
             }
             unset($post['admin_password']);
@@ -155,7 +155,7 @@ class Admin extends Controller
                         
                     }else{
                         // 上传失败获取错误信息
-                        echo "<script>alert(".$file->getError().");window.history.go(-1)</script>";
+                        jump($file->getError(),'admin/admin/admin_upd');
                     }
                 }
             }      

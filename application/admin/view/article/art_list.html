@@ -1,0 +1,103 @@
+﻿					{include file="common/header" /}
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="<?=URL('admin/index/index')?>">首页</a>
+							</li>
+							<li class="active">分类管理</li>
+                            <li class="active">分类列表</li>
+						</ul><!-- .breadcrumb -->
+					</div>
+
+					<div class="page-content">
+
+
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="table-responsive">
+											<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+												<thead>
+													<tr>
+														<th class="center">
+															<label>
+																<input type="checkbox" class="ace" />
+																<span class="lbl"></span>
+															</label>
+														</th>
+														<th>分类id</th>
+														<th>文章主题</th>
+														<th>添加人</th>
+														<th>封面</th>
+														<th>类型</th>
+														<th>文章内容</th>
+														<th>时间</th>
+														<th>操作</th>
+													</tr>
+												</thead>
+
+												<tbody>
+													{volist name="data" id="v"}
+													<tr>
+														<td class="center">
+															<label>
+																<input type="checkbox" class="ace" />
+																<span class="lbl"></span>
+															</label>
+														</td>
+
+														<td>{$v.art_id}</td>
+														{if condition="$v['is_top'] == 1"}
+															<td>{$v.art_title}<font color="blue">[置顶]</font></td>
+														{else /}
+															<td>{$v.art_title}</td>
+														{/if}
+														<td>{$v.art_name}</td>
+														<td><img src="__STATIC__/{$v.art_img}" style="width: 50px; height: 40px;"></td>
+														<td><a href="<?=URL('admin/article/art_list')?>?cate_id={$v.cate_id}">{$v.cate_name}</a></td>
+														<td><a href="<?=URL('admin/article/art_info')?>?art_id={$v.art_id}">文章详情</a></td>
+														<td>{$v.art_addtime|date="Y-m-d H:i:s",###}</td>
+														<td>
+															{if condition="$v['is_top'] == 1"}
+															<a href="<?=URL('admin/article/art_top')?>?art_id={$v.art_id}&top=1">取消置顶</a>
+															{else /}
+															<a href="<?=URL('admin/article/art_top')?>?art_id={$v.art_id}&top=0">置上顶端</a>
+															{/if}
+															||<a href="javascript:;" class="del" data-del="{$v.art_id}">删除</a>
+															||<a href="<?=URL('admin/article/art_upd')?>?art_id={$v.art_id}" >编辑</a>
+														</td>
+
+													</tr>
+													{/volist}
+													
+												
+
+													
+												</tbody>
+											</table>
+										</div><!-- /.table-responsive -->
+										<center>{$data->render()}</center>
+									{include file="common/foot" /}
+
+
+
+<script type="text/javascript">
+$(function()
+{
+	//ajax删除
+	$('.del').click(function()
+	{	 
+		if (!confirm('您确定要放入回收站么？')) return;
+		var admin_id = $(this).data('del');
+		var this_del = $(this);
+		$.get("<?=URL('admin/article/art_del')?>",{art_id:admin_id},function(info)
+		{
+			if (info == 1) {
+				this_del.parents('tr').remove();
+			} else {
+				alert('删除失败');
+			}
+		})
+	})
+})
+</script>
