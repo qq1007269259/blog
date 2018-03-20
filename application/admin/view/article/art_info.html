@@ -1,0 +1,31 @@
+{include file="common/header" /}
+					<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="<?=URL('admin/index/index')?>">首页</a>
+							</li>
+							<li class="active">文章管理</li>
+                            <li class="active">文章详情</li>
+						</ul><!-- .breadcrumb -->
+					</div>
+
+					<div class="page-content">
+						<div class="page-header">
+						</div><!-- /.page-header -->
+
+						<div class="row">
+								<div class="form-group">
+									<table style=" font-size:15px;">
+										<tr>
+											<td><b>文章标题:</b></td>
+											<td><b><font color="red">{$info.art_title}</font></b></td>
+										</tr>  
+									</table>
+										
+								</div>
+								<div style=" font-size:13px; width: 1000px;">  
+								{$info.art_content}
+								</div>
+
+
+{include file='common/footer' /}

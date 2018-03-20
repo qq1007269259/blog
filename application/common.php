@@ -10,3 +10,7 @@
 // +----------------------------------------------------------------------
 
 // 应用公共文件
+function jump($info,$url)
+{
+	echo "<script>alert('".$info."');location.href='".URL($url)."'</script>";
+}
