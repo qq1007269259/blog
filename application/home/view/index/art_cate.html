@@ -1,0 +1,33 @@
+{include file="common/head" /}
+<div class="container">
+  <div class="con_content">
+    <div class="about_box">
+      <h2 class="nh1"><span>您现在的位置是：<a href="/" target="_blank">网站首页</a>>><a href="#" target="_blank">{$cate.cate_name}</a></span><b>{$cate.cate_name}</b></h2>
+      <div class="dtxw box">
+        {volist name="data" id="v"}
+        <li>
+          <div class="dttext f_l">
+            <ul>
+              <h2><a href="<?=URL('home/index/art_content')?>?art_id={$v.art_id}">{$v.cate_name}——{$v.art_title}</a></h2>
+              <p>{$v.art_abstract}</p>
+              <span>{$v.art_addtime|date="Y-m-d",###}</span>
+            </ul>
+          </div>
+          <div class="xwpic f_r"><a href="/"><img src="__STATIC__/{$v.art_img}"></a></div>
+        </li>
+        {/volist}
+
+      </div>
+      <div class="pagelist">
+        页次：{$list.page}/{$list.page_num} 总条数{$list.nums} 总页数{$list.page_num}
+        <a href="<?=URL('home/index/art_cate')?>?cate_id={$cate.cate_id}&page=1">首页</a>
+        <a href="<?=URL('home/index/art_cate')?>?cate_id={$cate.cate_id}&page={$list.up}">上一页</a>
+        <a href="<?=URL('home/index/art_cate')?>?cate_id={$cate.cate_id}&page={$list.next}">下一页</a>
+        <a href="<?=URL('home/index/art_cate')?>?cate_id={$cate.cate_id}&page={$list.page_num}">尾页</a>
+      </div>
+    </div>
+  </div>
+  <div class="blank"></div>
+  <!-- container代码 结束 -->
+  
+{include file="common/footer" /}

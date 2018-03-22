@@ -1,0 +1,75 @@
+{include file="common/head" /}
+  <div class="container">
+    <div class="con_content">
+      <div class="about_box">
+        <h2 class="nh1"><span>您现在的位置是：<a href="/" target="_blank">网站首页</a>>><a href="#" target="_blank">文章详情</a></span><b>文章详情</b></h2>
+        <div class="f_box">
+          <p class="a_title">文章详情</p>
+          <p class="p_title"></p>
+            <p class="box_p"><span>发布时间：{$data.art_addtime|date="Y-m-d H:i:s",###}</span><span>作者：{$data.art_name}</span><span>来源：玖的博客</span><span>点击：{$data.art_click}</span></p> 
+          <!-- 可用于内容模板 --> 
+        </div>
+        <ul class="about_content">
+          {$data.art_content}
+        <p class="box_p">文章内容结束</p>
+        </ul>
+        <!--    <div class="nextinfos">
+      <p>上一篇：<a href="/">区中医医院开展志愿服务活动</a></p>
+      <p>下一篇：<a href="/">广安区批准“单独两孩”500例</a></p>
+    </div>--> 
+        <!-- 可用于内容模板 --> 
+      <!-- 发表评论 -->
+      <div id="tuwen">
+        <h2 class="nh1"><b>用户评论</b></h2>
+
+          <table style="width: 100%;">
+          {volist name="com" id="v"}
+            <!-- <p class="dateview"><span>{$v.com_addtime|date="Y-m-d H:i:s",###}</span><span>{$v.user_truename}</span><span{$v.com_content}></span></p> -->
+            <tr style="height: 60px;">
+              <td style="width: 60px;"><img src="__STATIC__/{$v.user_img}" style="width: 40px; height: 40px;">{$v.user_truename}</td>
+              <td>&nbsp;&nbsp;说：{$v.com_content}</td>
+              <td style="float: right; margin-top: 20px;">评论时间：{$v.com_addtime|date="Y-m-d H:i:s",###}</td>
+            </tr>
+          {/volist}
+          </table>
+
+      </div>
+      <div>
+        <h2 class="nh1"><b>发表评论</b></h2>
+        <div class="blank"></div>
+        <form action="<?=URL('home/index/add_comment')?>" method="post">
+        <input type="hidden" id="art_id"  name="art_id"  value="{$data.art_id}">
+        <input type="hidden" id="user_id"  name="user_id"  value="{$Think.session.user.user_id}">
+        <textarea id="content"  name="com_content"  class="input_text" style="width:100%; height:80px" placeholder="请写上你的评论或问题"></textarea><br/>
+        <div class="blank"></div>
+        <input type="submit" value="发表" class="input_submit" id="add">
+      </form>
+      </div>
+        <!-- container代码 结束 --> 
+      </div>
+    </div>
+    <div class="blank"></div>
+    
+  </div>
+  <!-- container代码 结束 -->
+  <script type="text/javascript">
+    $(function(){
+      $("#add").click(function()
+      {
+        var comments = $("#comments");
+        var user_id = $("#user_id").val();
+        var com_content = $("#content").val();
+        if (user_id == "") {
+          alert('要想评论,请在关于我处登录');
+          return false;
+        }
+        if (com_content == "") {
+          alert('评论内容不能为空');
+          return false;
+        }
+        var art_id = $("#art_id").val();
+      })
+    })
+  </script>
+{include file="common/footer" /}
+

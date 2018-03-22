@@ -1,0 +1,48 @@
+{include file="common/head" /}
+  <div class="container">
+    <div class="con_content">
+      <div class="about_box">
+        <h2 class="nh1"><span>您现在的位置是：<a href="/" target="_blank">网站首页</a>>><a href="#" target="_blank">个人中心</a></span><b>个人中心</b></h2>
+        <div class="f_box">
+          <p class="a_title">{$data.user_truename}的资料</p>
+          <p class="p_title"></p>
+          <p class="box_p">
+            {if condition="$data.user_img == ''"}
+              【未完善】<a href="<?=URL('home/user/userinfo')?>?user_id={$data.user_id}">点击去完善</a>
+            {else /}
+              【已完善】
+            {/if}
+          </p>
+          <!--  <p class="box_p"><span>发布时间：2017-07-07 15:12:42</span><span>作者：唐孝文</span><span>来源：稽查支队</span><span>点击：111056</span></p>--> 
+          <!-- 可用于内容模板 --> 
+        </div>
+        <ul class="about_content">
+          <p class="dateview"><span><b>用户名</b></span>&nbsp;<span>{$data.user_name}</span></p>
+          <p class="dateview"><span><b>昵称</b></span>&nbsp;&nbsp;<span>{$data.user_truename}</span></p>
+          {if condition="$data.user_img == ''"}
+            <p class="dateview"><span><b>头像(默认)</b></span><img src="__STATIC__/home/images/qq.jpg"></p>
+          {else /}
+            <p class="dateview"><span><b>头像(默认)</b></span><img src="__STATIC__/{$data.user_img}"></p>
+          {/if}
+          {if condition="$data.user_tel == ''"}
+          {else /}
+            <p class="dateview"><span><b>手机号</b></span>&nbsp;<span>{$data.user_tel}</span></p>
+            <p class="dateview"><span><b>邮箱</b></span>&nbsp;&nbsp;<span>{$data.user_email}</span></p>
+          {/if}
+          <p class="dateview"><span><b>时间</b></span>&nbsp;&nbsp;<span>{$data.user_addtime|date="Y-m-d H:i:s",###}</span></p>
+        </ul>
+        <!--    <div class="nextinfos">
+      <p>上一篇：<a href="/">区中医医院开展志愿服务活动</a></p>
+      <p>下一篇：<a href="/">广安区批准“单独两孩”500例</a></p>
+    </div>--> 
+        <!-- 可用于内容模板 --> 
+        
+        <!-- container代码 结束 --> 
+      </div>
+    </div>
+    <div class="blank"></div>
+  </div>
+  <!-- container代码 结束 -->
+  
+{include file="common/footer" /}
+
