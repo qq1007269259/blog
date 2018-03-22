@@ -49,7 +49,7 @@ class Article extends Common
 			// $this->upd_img($post,'art_img','public/static/common/article',1);
 		} else {
 			//分类信息
-			$data = DB::name('category')->field('cate_id,cate_name')->select();
+			$data = DB::name('category')->where('is_show',1)->field('cate_id,cate_name')->select();
 			$this->assign('data',$data);
 			return $this->fetch();
 		}
@@ -109,6 +109,7 @@ class Article extends Common
 		$request = Request::instance();
 		$art_id = $request->get('art_id');
 		$res = Db::name('article')->delete($art_id);
+		$res = Db::name('comment')->where('art_id',$art_id)->delete();
 		echo $res;
 	}
 
@@ -164,7 +165,7 @@ class Article extends Common
 			$a_data = Db::name('article')->alias('a')->join('bl_category b','a.cate_id = b.cate_id')->where('art_id',$art_id)->find();
 
 			//分类信息
-			$data = DB::name('category')->field('cate_id,cate_name')->select();
+			$data = DB::name('category')->where('is_show',1)->field('cate_id,cate_name')->select();
 			$this->assign('a_data',$a_data);
 			$this->assign('data',$data);
 			return $this->fetch();
@@ -186,6 +187,23 @@ class Article extends Common
 		if ($res) {
 			return $this->redirect('admin/article/art_list');
 		}
+	}
+
+	//评论列表
+	public function com_list()
+	{
+		$data = Db::name('article')->alias('a')->join('comment b','a.art_id = b.art_id')->join('user c','c.user_id = b.user_id')->select();
+		$this->assign('data',$data);
+		return $this->fetch();
+	}
+
+	//删除评论
+	public function com_del()
+	{
+		$request = Request::instance();
+		$com_id = $request->get('com_id');
+		$res = Db::name('comment')->delete($com_id);
+		echo $res;
 	}
 
 	//文件上传

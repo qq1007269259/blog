@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<title>玖的博客</title>
+<meta name="keywords" content="玖的博客——江南墨卷" />
+<meta name="description" content="玖的博客——江南墨卷" />
+<link href="__STATIC__/home/css/base.css" rel="stylesheet">
+<link href="__STATIC__/home/css/index.css" rel="stylesheet">
+<!--[if lt IE 9]>
+<script src="__STATIC__/home/js/modernizr.js"></script>
+<![endif]-->
+<script type="text/javascript" src="__STATIC__/home/js/jquery.js"></script>
+</head>
+<body>
+<div id="wrapper">
+  <header>
+    <div class="headtop"></div>
+    <div class="contenttop">
+      <div class="logo f_l">玖的博客——江南墨卷</div>
+      <div class="search f_r">
+        <form action="#" method="post" name="searchform" id="searchform">
+          <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字'}" type="text">
+          <input name="show" value="title" type="hidden">
+          <input name="tempid" value="1" type="hidden">
+          <input name="tbname" value="news" type="hidden">
+          <input name="Submit" class="input_submit" value="搜索" type="submit">
+        </form>
+      </div>
+      <div class="blank"></div>
+      <nav>
+        <div  class="navigation">
+          <ul class="menu">
+            <li><a href="<?=URL('home/index/index')?>">网站首页</a></li>
+            <li><a href="#">关于我</a>
+              <ul>
+                {if condition="$Think.session.user.user_id == ''"}
+                  <li><a href="<?=URL('home/user/login')?>">登录</a></li>
+                  <li><a href="<?=URL('home/user/register')?>">注册</a></li>
+                {else /}
+                  <li><a href="<?=URL('home/index/userinfo')?>">个人中心</a></li>
+                  <li><a href="<?=URL('home/user/loginout')?>">退出</a></li>
+                {/if}
+              </ul>
+            </li>
+            <li><a href="#">博客分类</a>
+              <ul>
+                {volist name="$Think.session.cate" id="v"}
+                <li><a href="<?=URL('home/index/art_cate')?>?cate_id={$v.cate_id}">{$v.cate_name}</a></li>
+                {/volist}
+              </ul>
+            </li>
+            <li><a href="newslistpic.html">技术文章</a> </li>
+            <li><a href="<?=URL('home/index/myself')?>">博主留言</a> </li>
+          </ul>
+        </div>
+      </nav>
+      <SCRIPT type=text/javascript>
+	// Navigation Menu
+	$(function() {
+		$(".menu ul").css({display: "none"}); // Opera Fix
+		$(".menu li").hover(function(){
+			$(this).find('ul:first').css({visibility: "visible",display: "none"}).slideDown("normal");
+		},function(){
+			$(this).find('ul:first').css({visibility: "hidden"});
+		});
+	});
+</SCRIPT> 
+    </div>
+  </header>

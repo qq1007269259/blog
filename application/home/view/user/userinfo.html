@@ -1,0 +1,35 @@
+{include file="common/head" /}
+  <div class="container">
+    <div class="con_content">
+      <div class="about_box">
+        <h2 class="nh1"><span>您现在的位置是：<a href="/" target="_blank">网站首页</a>>><a href="#" target="_blank">用户信息完善</a></span><b>用户信息完善</b></h2>
+        <ul class="about_content">
+          <!-- <p>你永远也看不到我最寂寞时候的样子，因为只有你不在我身边的时候，我才最寂寞。</p> -->
+        </ul>
+        <div class="f_box">
+          <p class="a_title">用户信息完善</p>
+          <p class="p_title"></p>
+          <!--  <p class="box_p"><span>发布时间：2017-07-07 15:12:42</span><span>作者：唐孝文</span><span>来源：稽查支队</span><span>点击：111056</span></p>--> 
+          <!-- 可用于内容模板 --> 
+        </div>
+        <div class="f_box">
+        <form action="<?=URL('home/user/userinfo')?>?user_id={$data.user_id}" method="post" enctype="multipart/form-data">
+
+          <p class="box_p"><span>用户名</span><b>{$data.user_name}</b></p>
+          <p class="box_p"><span>昵称</span><b>{$data.user_truename}</b></p>
+          <p class="box_p"><span>手机号</span><input name="user_tel" type="text" class="input_text" placeholder="手机号" /></p>
+          <p class="box_p"><span>头像</span><input name="user_img" type="file" style="width: 170px;" /></p>
+          <p class="box_p"><span>邮箱</span><input name="user_email" type="text" class="input_text" placeholder="邮箱" /></p>
+          <p class="box_p"><span><input class="input_submit" type="submit" value="确认完善"></span><span><input type="reset" class="input_submit" value="重置"></span></p>
+
+        </form>
+        </div>
+        <!-- container代码 结束 --> 
+      </div>
+    </div>
+    <div class="blank"></div>
+  </div>
+  <!-- container代码 结束 -->
+  
+{include file="common/footer" /}
+

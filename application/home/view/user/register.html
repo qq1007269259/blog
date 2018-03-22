@@ -1,0 +1,35 @@
+{include file="common/head" /}
+  <div class="container">
+    <div class="con_content">
+      <div class="about_box">
+        <h2 class="nh1"><span>您现在的位置是：<a href="/" target="_blank">网站首页</a>>><a href="#" target="_blank">用户注册</a></span><b>用户注册</b></h2>
+        <ul class="about_content">
+          <p> 每一天都是一个新的开始。人生需要一个好的心态。一些生命，一些时光，一些过往，经历风，经历雨，仍盈润得如晨中的一朵荷香，如眸中的一缕清波，如水色中的一锦华年。生命是一份懂得，一枚厚重。流年是一本书韵，过往是一曲红尘，而时光则是一树温润，一窗明媚，和繁华中的一指花开花落。</p>
+          <p>你永远也看不到我最寂寞时候的样子，因为只有你不在我身边的时候，我才最寂寞。</p>
+        </ul>
+        <div class="f_box">
+          <p class="a_title">用户注册</p>
+          <p class="p_title"></p>
+          <!--  <p class="box_p"><span>发布时间：2017-07-07 15:12:42</span><span>作者：唐孝文</span><span>来源：稽查支队</span><span>点击：111056</span></p>--> 
+          <!-- 可用于内容模板 --> 
+        </div>
+        <div class="f_box">
+        <form action="<?=URL('home/user/register')?>" method="post" >
+
+          <p class="box_p"><span>用户名</span><input name="user_name" type="text" class="input_text" placeholder="用户名" /></p>
+          <p class="box_p"><span>昵称</span><input name="user_truename" type="text" class="input_text" placeholder="昵称" /></p>
+          <p class="box_p"><span>密码</span><input name="user_pwd" type="password" class="input_text" placeholder="密码" /></p>
+          <p class="box_p"><span>确认密码</span><input name="user_password" type="password" class="input_text" placeholder="确认密码" /></p>
+          <p class="box_p"><span><input class="input_submit" type="submit" value="确认注册"></span><span><input type="reset" class="input_submit" value="重置"></span></p>
+
+        </form>
+        </div>
+        <!-- container代码 结束 --> 
+      </div>
+    </div>
+    <div class="blank"></div>
+  </div>
+  <!-- container代码 结束 -->
+  
+{include file="common/footer" /}
+
